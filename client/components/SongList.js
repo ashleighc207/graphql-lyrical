@@ -11,6 +11,7 @@ const SongList = props => {
         <div> Loading... </div>
       ) : (
         <div className="song-list">
+          <h3 className="heading-three">Song List</h3>
           {props.data.songs.map(s => {
             return (
               <div className="song" key={s.id}>
@@ -20,7 +21,11 @@ const SongList = props => {
           })}
         </div>
       )}
-      <Link to="/add-song">Test</Link>
+      <div className="btn-container">
+        <Link to="/add-song" className="circle-btn">
+          <i className="material-icons">add</i>
+        </Link>
+      </div>
     </div>
   );
 };

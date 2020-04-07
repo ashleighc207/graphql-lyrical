@@ -9,7 +9,8 @@ module.exports = {
   watch: true,
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: "/"
   },
   watch: true,
   node: {
@@ -28,6 +29,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "/dist"),
     watchContentBase: true,
+    historyApiFallback: true,
     proxy: [
       {
         context: ["/api"],

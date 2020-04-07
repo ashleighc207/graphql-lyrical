@@ -7,6 +7,7 @@ import { HttpLink } from "apollo-link-http";
 import SongList from "./components/SongList";
 import SongCreate from "./components/SongCreate";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./style/style.css";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -22,8 +23,10 @@ const Root = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Route exact path="/" component={SongList} />
-        <Route exact path="/add-song" component={SongCreate} />
+        <div className="main-container">
+          <Route exact path="/" component={SongList} />
+          <Route exact path="/add-song" component={SongCreate} />
+        </div>
       </Router>
     </ApolloProvider>
   );
