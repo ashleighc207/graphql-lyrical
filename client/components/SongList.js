@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import gql from "graphql-tag";
 import { graphql } from "react-apollo";
+import query from "../queries/fetchSongs.js";
 import "../style/style.css";
 
 const SongList = props => {
@@ -29,14 +29,5 @@ const SongList = props => {
     </div>
   );
 };
-
-const query = gql`
-  {
-    songs {
-      id
-      title
-    }
-  }
-`;
 
 export default graphql(query)(SongList);
