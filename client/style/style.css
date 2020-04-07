@@ -20,6 +20,14 @@ div {
   display: flex;
   border-radius: 5px;
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.song:hover {
+  background-color: #36507b33;
 }
 
 .song-list {
@@ -111,6 +119,8 @@ div {
   align-items: center;
 }
 
-.arrow-icon {
+.arrow-icon,
+.close-icon {
   font-size: 30px;
+  cursor: pointer;
 }
