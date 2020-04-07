@@ -1,37 +1,26 @@
 const webpack = require("webpack");
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
   entry: "./client/index.js",
-  mode: "development",
   output: {
-    path: "/",
+    path: path.join(__dirname, "/dist"),
     filename: "bundle.js"
   },
-
+  node: {
+    fs: "empty"
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/env", "@babel/react"]
-            }
-          }
-        ]
+        use: { loader: "babel-loader" }
       },
-      {
-        use: ["style-loader", "css-loader"],
-        test: /\.css$/
-      }
+      { test: /\.css$/, use: ["style-loader", "css-loader"] }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "client/index.html"
-    })
-  ]
+  plugins: [new HtmlWebpackPlugin({ template: "./client/index.html" })]
 };
