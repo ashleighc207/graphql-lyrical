@@ -7,6 +7,7 @@ const schema = require("./schema/schema");
 require("dotenv").config();
 
 const app = express();
+const cors = require("cors");
 
 // Replace with your mongoLab URI
 const MONGO_URI = process.env.MONGO_URI;
@@ -20,6 +21,7 @@ mongoose.connection
   .once("open", () => console.log("Connected to MongoLab instance."))
   .on("error", error => console.log("Error connecting to MongoLab:", error));
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(
   "/graphql",
