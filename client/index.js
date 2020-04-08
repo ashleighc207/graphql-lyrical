@@ -7,6 +7,7 @@ import { HttpLink } from "apollo-link-http";
 import SongList from "./components/SongList";
 import SongDetail from "./components/SongDetail";
 import SongCreate from "./components/SongCreate";
+import LyricCreate from "./components/LyricCreate";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./style/style.css";
 
@@ -28,6 +29,7 @@ const Root = () => {
           <Route exact path="/" component={SongList} />
           <Route exact path="/add-song" component={SongCreate} />
           <Route exact path="/song-details/:id" component={SongDetail} />
+          <Route exact path="/add-lyric/:id" component={LyricCreate} />
         </div>
       </Router>
     </ApolloProvider>
