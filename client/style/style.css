@@ -129,3 +129,14 @@ div {
   font-size: 30px;
   cursor: pointer;
 }
+
+.thumbs-up {
+  margin-right: 10px;
+  cursor: pointer;
+  color: #365c7b;
+}
+
+.like-container {
+  display: flex;
+  align-items: center;
+}

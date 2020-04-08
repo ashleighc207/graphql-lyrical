@@ -2,8 +2,19 @@ import React, { useEffect } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { Link } from "react-router-dom";
+import getSongLyrics from "../queries/fetchLyrics.js";
+
 const SongDetail = props => {
-  console.log(props);
+  const upvoteLyric = id => {
+    props.mutate({
+      variables: {
+        id: id
+      },
+      refetchQueries: [
+        { query: query, variables: { id: props.match.params.id } }
+      ]
+    });
+  };
   return (
     <div>
       <Link to="/" className="text-link">
@@ -20,6 +31,15 @@ const SongDetail = props => {
               return (
                 <div className="lyric" key={l.id}>
                   <span>{l.content}</span>
+                  <div className="like-container">
+                    <i
+                      className="material-icons thumbs-up"
+                      onClick={() => upvoteLyric(l.id)}
+                    >
+                      thumb_up
+                    </i>
+                    <span>{l.likes}</span>
+                  </div>
                 </div>
               );
             })}
@@ -42,7 +62,16 @@ const query = gql`
       lyrics {
         id
         content
+        likes
       }
+    }
+  }
+`;
+
+const mutation = gql`
+  mutation LikeLyric($id: ID) {
+    likeLyric(id: $id) {
+      id
     }
   }
 `;
@@ -52,4 +81,4 @@ export default graphql(query, {
     console.log(props);
     return { variables: { id: props.match.params.id } };
   }
-})(SongDetail);
+})(graphql(mutation)(SongDetail));
